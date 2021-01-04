@@ -10,6 +10,7 @@ import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -89,7 +90,7 @@ class DrawingView extends View implements View.OnTouchListener {
     }
 
     // Save Function
-    public void save(Context context){
+    public Bitmap save(Context context){
         this.setDrawingCacheEnabled(true);
         Bitmap screenshot = this.getDrawingCache();
 
@@ -107,6 +108,7 @@ class DrawingView extends View implements View.OnTouchListener {
 
             OutputStream outStream = new FileOutputStream(image);
             screenshot.compress(Bitmap.CompressFormat.PNG, 100, outStream);
+
             outStream.close();
 
             // 갤러리에 변경을 알려줌
@@ -124,7 +126,8 @@ class DrawingView extends View implements View.OnTouchListener {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        this.setDrawingCacheEnabled(false);
+//        this.setDrawingCacheEnabled(false);
+        return screenshot;
     }
 
     public int getColor() {

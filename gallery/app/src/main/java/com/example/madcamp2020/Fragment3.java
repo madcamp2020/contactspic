@@ -47,8 +47,6 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Fragment3 extends Fragment {
@@ -63,7 +61,6 @@ public class Fragment3 extends Fragment {
     private static final int DRAW_PIC = 3;
 
     private File tempFile;
-    private File sendFile;
 
     ImageView imageView;
 
@@ -105,7 +102,6 @@ public class Fragment3 extends Fragment {
                 Toast.makeText(getActivity(), namelist.get(position) + " was chosen", Toast.LENGTH_SHORT).show();
                 idx = position;
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
@@ -113,17 +109,8 @@ public class Fragment3 extends Fragment {
 
         imageView = v.findViewById(R.id.addimage);
 
-        imageView.setOnClickListener(new View.OnClickListener() {
+        imageView.setOnClickListener(new View.OnClickListener(){
             @Override
-<<<<<<< HEAD
-            public void onClick(View view) {
-                //이부분 startactivity를 startactivityforresult로 수정
-                Intent intent = new Intent(getActivity().getApplicationContext(), DrawActivity.class);
-
-                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                originalBm.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-                byte[] b = stream.toByteArray();
-=======
             public void onClick(View view){
                 try{
                     //이부분 startactivity를 startactivityforresult로 수정
@@ -138,18 +125,13 @@ public class Fragment3 extends Fragment {
                 }catch(Exception e){
                     Toast.makeText(getActivity().getApplicationContext(), "사진을 먼저 선택해 주세요", Toast.LENGTH_LONG).show();
                 }
->>>>>>> 8a338cd7ec1b1247f7c8292884d525afb5dd55fa
 
             }
         });
 
         TextView send = (TextView) v.findViewById(R.id.sender);
         EditText textSMS = (EditText) v.findViewById(R.id.message);
-<<<<<<< HEAD
-        send.setOnClickListener(new View.OnClickListener() {
-=======
         send.setOnClickListener(new View.OnClickListener(){
->>>>>>> 8a338cd7ec1b1247f7c8292884d525afb5dd55fa
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View v) {
@@ -158,10 +140,6 @@ public class Fragment3 extends Fragment {
                 try {
                     SmsManager smsManager = SmsManager.getDefault();
                     smsManager.sendTextMessage(phoneNo, null, sms, null, null);
-<<<<<<< HEAD
-
-=======
->>>>>>> 8a338cd7ec1b1247f7c8292884d525afb5dd55fa
                     ArrayList<Image> fileList = getfiles();
 
                     fileList = (ArrayList<Image>) fileList.stream().filter(t -> t.bucket_Name.equals("Pictures") && t.name.contains("Title")).collect(Collectors.toList());
@@ -178,36 +156,34 @@ public class Fragment3 extends Fragment {
             }
         });
 
+
         TextView textgal = v.findViewById(R.id.getphoto);
         TextView textcam = v.findViewById(R.id.takephoto);
 
-        textgal.setOnClickListener(new View.OnClickListener() {
+        textgal.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View view) {
-                if (isPermission) goToAlbum();
-                else
-                    Toast.makeText(view.getContext(), getResources().getString(R.string.permission_1), Toast.LENGTH_LONG).show();
+            public void onClick(View view){
+                if(isPermission) goToAlbum();
+                else Toast.makeText(view.getContext(), getResources().getString(R.string.permission_1), Toast.LENGTH_LONG).show();
             }
         });
 
-        textcam.setOnClickListener(new View.OnClickListener() {
+        textcam.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View view) {
-                if (isPermission) takePhoto();
-                else
-                    Toast.makeText(view.getContext(), getResources().getString(R.string.permission_2), Toast.LENGTH_LONG).show();
+            public void onClick(View view){
+                if(isPermission) takePhoto();
+                else Toast.makeText(view.getContext(), getResources().getString(R.string.permission_2), Toast.LENGTH_LONG).show();
             }
         });
 
         return v;
     }
 
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode != Activity.RESULT_OK) {
-            Log.d("취소 되었습니다.", "tq");
+            Log.d( "취소 되었습니다." , "tq");
 
             if (tempFile != null) {
                 if (tempFile.exists()) {
@@ -246,7 +222,6 @@ public class Fragment3 extends Fragment {
 
                 tempFile = new File(cursor.getString(column_index));
 
-
                 Log.d(TAG, "tempFile Uri : " + Uri.fromFile(tempFile));
 
 
@@ -270,7 +245,7 @@ public class Fragment3 extends Fragment {
                 e.printStackTrace();
             }
 
-        } else if (requestCode == DRAW_PIC) {
+        }else if (requestCode == DRAW_PIC){
             //여기 자체가 실행 안됨
             byte[] arr = data.getByteArrayExtra("draw");
             Log.d("fragment3", arr.toString());
@@ -357,10 +332,7 @@ public class Fragment3 extends Fragment {
         transaction.sendNewMessage(message, id);
     }
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 8a338cd7ec1b1247f7c8292884d525afb5dd55fa
 
     private File createImageFile() throws IOException {
 
@@ -381,7 +353,7 @@ public class Fragment3 extends Fragment {
 
 
     /**
-     * tempFile 을 bitmap 으로 변환 후 ImageView 에 설정한다.
+     *  tempFile 을 bitmap 으로 변환 후 ImageView 에 설정한다.
      */
     private void setImage() throws IOException {
 
@@ -478,8 +450,5 @@ public class Fragment3 extends Fragment {
         }
 
     }
-<<<<<<< HEAD
-=======
 
->>>>>>> 8a338cd7ec1b1247f7c8292884d525afb5dd55fa
 }

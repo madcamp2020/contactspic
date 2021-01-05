@@ -17,6 +17,7 @@ public class Contacts implements Parcelable {
     public String name;
     public String phNumbers;
     public String nickname;
+    public String photo_id;
 
     //    final private Context ctx;
     // 화면에 표시될 문자열 초기화
@@ -30,6 +31,7 @@ public class Contacts implements Parcelable {
         this.name = name;
         this.phNumbers = contacts;
         this.nickname = nickname;
+
     }
     public static ArrayList<Contacts> createContactsList( ArrayList<Contacts> contacts, Context context, Contacts item) {
         Cursor c = context.getContentResolver().query(

@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Build;
@@ -113,6 +115,7 @@ public class Fragment3 extends Fragment {
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
+<<<<<<< HEAD
             public void onClick(View view) {
                 //이부분 startactivity를 startactivityforresult로 수정
                 Intent intent = new Intent(getActivity().getApplicationContext(), DrawActivity.class);
@@ -120,15 +123,33 @@ public class Fragment3 extends Fragment {
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
                 originalBm.compress(Bitmap.CompressFormat.JPEG, 100, stream);
                 byte[] b = stream.toByteArray();
+=======
+            public void onClick(View view){
+                try{
+                    //이부분 startactivity를 startactivityforresult로 수정
+                    Intent intent = new Intent(getActivity().getApplicationContext(), DrawActivity.class);
 
-                intent.putExtra("image", b);
-                startActivityForResult(intent, DRAW_PIC);
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    originalBm.compress(Bitmap.CompressFormat.JPEG, 10, stream);
+                    byte[] b = stream.toByteArray();
+
+                    intent.putExtra("image", b);
+                    startActivityForResult(intent, DRAW_PIC);
+                }catch(Exception e){
+                    Toast.makeText(getActivity().getApplicationContext(), "사진을 먼저 선택해 주세요", Toast.LENGTH_LONG).show();
+                }
+>>>>>>> 8a338cd7ec1b1247f7c8292884d525afb5dd55fa
+
             }
         });
 
         TextView send = (TextView) v.findViewById(R.id.sender);
         EditText textSMS = (EditText) v.findViewById(R.id.message);
+<<<<<<< HEAD
         send.setOnClickListener(new View.OnClickListener() {
+=======
+        send.setOnClickListener(new View.OnClickListener(){
+>>>>>>> 8a338cd7ec1b1247f7c8292884d525afb5dd55fa
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View v) {
@@ -137,7 +158,10 @@ public class Fragment3 extends Fragment {
                 try {
                     SmsManager smsManager = SmsManager.getDefault();
                     smsManager.sendTextMessage(phoneNo, null, sms, null, null);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8a338cd7ec1b1247f7c8292884d525afb5dd55fa
                     ArrayList<Image> fileList = getfiles();
 
                     fileList = (ArrayList<Image>) fileList.stream().filter(t -> t.bucket_Name.equals("Pictures") && t.name.contains("Title")).collect(Collectors.toList());
@@ -225,17 +249,26 @@ public class Fragment3 extends Fragment {
 
                 Log.d(TAG, "tempFile Uri : " + Uri.fromFile(tempFile));
 
+
             } finally {
                 if (cursor != null) {
                     cursor.close();
                 }
             }
 
-            setImage();
+            try {
+                setImage();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
         } else if (requestCode == PICK_FROM_CAMERA) {
 
-            setImage();
+            try {
+                setImage();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
         } else if (requestCode == DRAW_PIC) {
             //여기 자체가 실행 안됨
@@ -324,6 +357,10 @@ public class Fragment3 extends Fragment {
         transaction.sendNewMessage(message, id);
     }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8a338cd7ec1b1247f7c8292884d525afb5dd55fa
 
     private File createImageFile() throws IOException {
 
@@ -346,7 +383,7 @@ public class Fragment3 extends Fragment {
     /**
      * tempFile 을 bitmap 으로 변환 후 ImageView 에 설정한다.
      */
-    private void setImage() {
+    private void setImage() throws IOException {
 
         BitmapFactory.Options options = new BitmapFactory.Options();
         originalBm = BitmapFactory.decodeFile(tempFile.getAbsolutePath(), options);
@@ -441,4 +478,8 @@ public class Fragment3 extends Fragment {
         }
 
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8a338cd7ec1b1247f7c8292884d525afb5dd55fa
 }

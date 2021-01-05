@@ -116,7 +116,7 @@ public class DrawActivity extends AppCompatActivity implements View.OnClickListe
                 Log.d("fragment4", draw.toString());
 
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                draw.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                draw.compress(Bitmap.CompressFormat.JPEG, 10, stream);
                 byte[] bytes = stream.toByteArray();
 
                 MediaStore.Images.Media.insertImage(this.getContentResolver(),draw, "Title", null);

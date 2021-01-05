@@ -21,6 +21,7 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+<<<<<<< HEAD
 
 <!--    &lt;!&ndash;저장공간쓰기기&ndash;&gt;-->
 <!--    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>-->
@@ -35,6 +36,8 @@
 <!--    <uses-permission android:name="android.permission.READ_CONTACTS"/>-->
 
 <!--    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>-->
+=======
+>>>>>>> 8a338cd7ec1b1247f7c8292884d525afb5dd55fa
 
     <application
         android:requestLegacyExternalStorage="true"
@@ -44,15 +47,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DrawBigImage"
-            android:theme="@style/DialogTheme"/>
-        <activity android:name=".MainActivity"
-            android:windowSoftInputMode="adjustNothing">
+        <activity android:name=".SplashActivity"
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".DrawBigImage"
+            android:theme="@style/DialogTheme"/>
+        <activity android:name=".MainActivity"
+            android:windowSoftInputMode="adjustNothing">
+
         </activity>
         <activity android:name=".DrawActivity"/>
         <activity android:name=".ContactsEditActivity"/>

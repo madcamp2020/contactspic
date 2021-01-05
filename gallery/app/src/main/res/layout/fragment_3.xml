@@ -47,6 +47,7 @@
         <Spinner
             android:id="@+id/spinner2"
             android:layout_width="283dp"
+            android:spinnerMode="dropdown"
             android:layout_height="wrap_content"
             />
 

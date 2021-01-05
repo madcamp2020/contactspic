@@ -99,11 +99,12 @@ public class Fragment3 extends Fragment {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getActivity(), namelist.get(position) + " was chosen", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), namelist.get(position) + " was chosen", Toast.LENGTH_SHORT).show();
                 idx = position;
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+                Toast.makeText(getActivity(), " 편지를 보낼 사람을 골라주세요!", Toast.LENGTH_LONG).show();
             }
         });
 

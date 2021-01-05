@@ -92,12 +92,12 @@ public class ContactsEditActivity extends AppCompatActivity {
         });
     }
     public Bitmap loadContactPhoto(ContentResolver cr, long id, long photo_id) {
-        Uri uri = ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI, id);
-        InputStream input = ContactsContract.Contacts.openContactPhotoInputStream(cr, uri);
-        if (input != null)
-            return resizingBitmap(BitmapFactory.decodeStream(input));
-        else
-            Log.d("PHOTO", "first try failed to load photo");
+//        Uri uri = ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI, id);
+//        InputStream input = ContactsContract.Contacts.openContactPhotoInputStream(cr, uri);
+//        if (input != null)
+//            return BitmapFactory.decodeStream(input);
+//        else
+//            Log.d("PHOTO", "first try failed to load photo");
         byte[] photoBytes = null;
         Uri photoUri = ContentUris.withAppendedId(ContactsContract.Data.CONTENT_URI, photo_id);
         Cursor c = cr.query(photoUri, new String[]{ContactsContract.CommonDataKinds.Photo.PHOTO}, null, null, null);
@@ -111,7 +111,7 @@ public class ContactsEditActivity extends AppCompatActivity {
         }
 
         if (photoBytes != null)
-            return resizingBitmap(BitmapFactory.decodeByteArray(photoBytes, 0, photoBytes.length));
+            return BitmapFactory.decodeByteArray(photoBytes, 0, photoBytes.length);
 
         else
             Log.d("PHOTO", "second try also failed");
@@ -123,10 +123,10 @@ public class ContactsEditActivity extends AppCompatActivity {
             return null;
         float width = oBitmap.getWidth();
         float height = oBitmap.getHeight();
-        float resizing_size = 120;
+        float resizing_size = 300;
         Bitmap rBitmap = null;
         if (width > resizing_size) {
-            float mWidth = (float) (width / 120);
+            float mWidth = (float) (width / 300);
             float fScale = (float) (resizing_size / mWidth);
             width *= (fScale /100);
             height *= (fScale / 100);
